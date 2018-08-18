@@ -1,0 +1,19 @@
+@startuml
+
+'idea.partialRender
+
+title Just Copy Workflow
+
+
+System -> "generateReport : ReportingService" : Every 3 hours
+"generateReport : ReportingService" -> "generateData : OriginDataService" : Request data by SQL
+"generateData : OriginDataService" --> "generateReport : ReportingService" : Respond data with data collection
+"generateReport : ReportingService" -> "packageDataSource : ReportingService" : Packaging Excel data with data collection
+"packageDataSource : ReportingService" --> "generateReport : ReportingService" : Excel data source
+"generateReport : ReportingService" -> "sendData : ReportingService" : Sending data
+
+group My own label
+    loop num_of_to_email_address(es) times
+        "sendData : ReportingService" -> "sendSummaryReport : MailSenderService" : Send report to email
+end
+@enduml

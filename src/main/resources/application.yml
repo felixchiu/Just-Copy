@@ -1,0 +1,65 @@
+report:
+    scheduled:
+        fixedRate: 10800000
+    address:
+        from: testing_email@platformnexus.com
+        to:
+            list: felix.chiu@gmail.com,felixchiu@live.com
+    message:
+        body: 'Attached is the list of stuck/delayed cases in PRE-EXT/EXT/NORMALIZATION process'
+        subject: 'Delayed Cases Report (EXT lab, >4 hours delays)'
+    name:
+        prefix: Delayed_cases_report
+        suffix:
+            datetimePattern: _yyyy_MM_dd_HH_mm_ss
+    source:
+        spreadsheet:
+            headers: case_id, sample_barcode, workflow_schedule_reason, latest_completed_ext_step, latest_completed_step_time, time_current, duration, threshold, delays
+            worksheet:
+                name: 'Stuck or Delayed cases in EXT processes'
+        sql:
+            file: ~/tmp/sql_file.sql
+        table:
+            columns: case_id, sample_barcode, workflow_schedule_reason, latest_completed_ext_step, latest_completed_step_time, time_current, duration, threshold, delays
+server:
+    port: 8700
+source:
+    jdbc:
+        driverClassName: com.mysql.jdbc.Driver
+        hibernate:
+            dbcp:
+                testWhileIdle: true
+            dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+            hbm2ddl:
+                auto: create-drop
+        password: source123
+        url: jdbc:mysql://mysql:33061/source_db?useSSL=false
+        username: source_user
+process:
+    jdbc:
+        driverClassName: com.mysql.jdbc.Driver
+        hibernate:
+            dbcp:
+                testWhileIdle: true
+            dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+            hbm2ddl:
+                auto: create-drop
+        password: process123
+        url: jdbc:mysql://mysql:33062/process_db?useSSL=false
+        username: process_user
+process:
+    jdbc:
+        driverClassName: com.mysql.jdbc.Driver
+        hibernate:
+            dbcp:
+                testWhileIdle: true
+            dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+            hbm2ddl:
+                auto: create-drop
+        password: target123
+        url: jdbc:mysql://mysql:33063/target_db?useSSL=false
+        username: target_user
+spring:
+    mail:
+        host: localhost
+        port: 1025

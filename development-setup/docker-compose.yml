@@ -1,0 +1,46 @@
+version: '3'
+services:
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+  mysqldb1:
+    image: mysql:5.7
+    container_name: source_mysqldb_1
+    environment:
+      - MYSQL_DATABASE=source_db
+      - MYSQL_USER=source_user
+      - MYSQL_PASSWORD=source123
+      - MYSQL_ROOT_PASSWORD=source123
+      - TZ=America/Los_Angeles
+    volumes:
+      - /etc/localtime:/etc/localtime
+    ports:
+      - "33061:3306"
+  mysqldb2:
+    image: mysql:5.7
+    container_name: process_mysqldb_2
+    environment:
+    - MYSQL_DATABASE=process_db
+    - MYSQL_USER=process_user
+    - MYSQL_PASSWORD=process123
+    - MYSQL_ROOT_PASSWORD=process123
+    - TZ=America/Los_Angeles
+    volumes:
+    - /etc/localtime:/etc/localtime
+    ports:
+    - "33062:3306"
+  mysqldb3:
+    image: mysql:5.7
+    container_name: target_mysqldb_3
+    environment:
+    - MYSQL_DATABASE=target_db
+    - MYSQL_USER=target_user
+    - MYSQL_PASSWORD=target123
+    - MYSQL_ROOT_PASSWORD=target123
+    - TZ=America/Los_Angeles
+    volumes:
+    - /etc/localtime:/etc/localtime
+    ports:
+    - "33063:3306"

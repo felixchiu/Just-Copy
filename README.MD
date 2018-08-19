@@ -29,3 +29,8 @@ The column names that we are pulling from source SQL query, that we want to inse
 ## Limitation
 
 We only support STRING (or TEXT) at this moment. 
+
+## Diagram
+
+![Sequence Diagram]
+(http://www.plantuml.com/plantuml/png/VL6xJiGm4Epz5QDhg0Bz5JI7aA122HArusmE2yVhMziW_XxdWHHE2LlExipixjpOZlHjq9AiTZNvZaIfP9CZFEUOSEBmZJUMZzxnbrA75s53CQ8X-RI63gZkKK2gNhMSAM7f7t14dJr2wQIv4ozERKvMiyILxX5DDXDqXqTjNHRQSMyuYo4ywAJNzD4-pgt9UdDiv2_xNFERt0useHlXWJjowYoS0vvy94ceoR1q2gKSSq3F0jBc7LB-XAMsjKVJ4Mbrd9p-AfOCr0xllsif1lOTV1vQ4d2F7Chg5FSEttdwh1C9XeVWA5dsUw5pJBzPhWH6kCG-4TJsq9xtQROaX9N63m00)

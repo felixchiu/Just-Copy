@@ -4,16 +4,16 @@
 
 title Just Copy Workflow
 
-
-System -> "generateReport : ReportingService" : Every 3 hours
-"generateReport : ReportingService" -> "generateData : OriginDataService" : Request data by SQL
-"generateData : OriginDataService" --> "generateReport : ReportingService" : Respond data with data collection
-"generateReport : ReportingService" -> "packageDataSource : ReportingService" : Packaging Excel data with data collection
-"packageDataSource : ReportingService" --> "generateReport : ReportingService" : Excel data source
-"generateReport : ReportingService" -> "sendData : ReportingService" : Sending data
-
-group My own label
-    loop num_of_to_email_address(es) times
-        "sendData : ReportingService" -> "sendSummaryReport : MailSenderService" : Send report to email
+"Process Service" -> "Pre-Target Process" : Run pre-target sql
+"Pre-Target Process" --> "Process Service" : Success / Failure
+"Process Service" -> "Source Data Service" : Run source sql
+"Source Data Service" -> "Target Data Service" : Submit data model
+group Insert Record
+    loop for each row
+        "Target Data Service" -> "Database" : Insert Record
 end
+"Target Data Service" --> "Source Data Service" : Respond number of updates
+"Source Data Service" --> "Process Service" : Response completion
+"Process Service" -> "Post-Target Service" : Post process
+"Post-Target Service" --> "Process Service" : Complete post process
 @enduml

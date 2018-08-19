@@ -1,26 +1,13 @@
-report:
-    scheduled:
-        fixedRate: 10800000
-    address:
-        from: testing_email@platformnexus.com
-        to:
-            list: felix.chiu@gmail.com,felixchiu@live.com
-    message:
-        body: 'Attached is the list of stuck/delayed cases in PRE-EXT/EXT/NORMALIZATION process'
-        subject: 'Delayed Cases Report (EXT lab, >4 hours delays)'
-    name:
-        prefix: Delayed_cases_report
-        suffix:
-            datetimePattern: _yyyy_MM_dd_HH_mm_ss
+query:
     source:
-        spreadsheet:
-            headers: case_id, sample_barcode, workflow_schedule_reason, latest_completed_ext_step, latest_completed_step_time, time_current, duration, threshold, delays
-            worksheet:
-                name: 'Stuck or Delayed cases in EXT processes'
-        sql:
-            file: ~/tmp/sql_file.sql
-        table:
-            columns: case_id, sample_barcode, workflow_schedule_reason, latest_completed_ext_step, latest_completed_step_time, time_current, duration, threshold, delays
+        columns: case_id, sample_barcode, workflow_schedule_reason, latest_completed_ext_step, latest_completed_step_time, time_current, duration, threshold, delays
+        file:
+    target:
+        file:
+    preTarget:
+        file:
+    postTarget:
+        file:
 server:
     port: 8700
 source:

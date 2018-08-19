@@ -21,7 +21,7 @@ public class UpdateDataService {
     private JdbcTemplate jdbcTemplate;
 
     @Async("target_update_executor")
-    public List<Map<String, Object>> generateData(String sql) {
+    public List<Map<String, Object>> updateData(String sql) {
         try {
             return jdbcTemplate.queryForList(sql);
         } catch (DataAccessException e) {

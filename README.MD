@@ -1,19 +1,31 @@
-# Specification 
+# Just Copy
 
-## New SQL 
-* TBC
+## Purpose   
 
-## Setup
+Provide a highly scalable and configurable data processing service to provide basic ETL process 
 
-### Add Oracle JDBC Driver for build
-```mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc7 -Dversion=12.1.0.1 -Dpackaging=jar -Dfile=/Users/fchiu/Downloads/ojdbc7.jar -DgeneratePom=true```
+## Configuration
 
-## Reference 
-* https://mvnrepository.com/artifact/com.oracle/ojdbc14/10.2.0.4.0
-* http://www.baeldung.com/java-microsoft-excel
-* http://www.baeldung.com/spring-data-jpa-query
+### Pre-Target SQL File (Optional)
 
-## Group
+The SQL we want to run __BEFORE__ we pull data
 
-* Group 1: temp.delays >= 4
-* Group 2: temp.delays >= 8
+### Source SQL File
+
+The SQL file which defines what data we are going to pull
+
+### Target SQL File
+
+An insert statement to load data into target table. The first column should be the unique key for this run
+
+### Post-Target SQL File (Optional)
+
+The SQL we want to run __AFTER__ we loaded data
+
+### Column Names
+
+The column names that we are pulling from source SQL query, that we want to insert into target table. The columns must ne in sequence to the target SQL. Again, the first column should be the unique key of this batch.   
+
+## Limitation
+
+We only support STRING (or TEXT) at this moment. 

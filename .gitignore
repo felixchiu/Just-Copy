@@ -19,3 +19,4 @@ logs/*
 logs/
 .clover
 /*/*/*/application-local.*
+.DS_Store

@@ -7,7 +7,7 @@ query:
     target:
         file: /Users/chiuf/tmp/target.sql
     preTarget:
-        file:
+        file: /Users/chiuf/tmp/pre-target.sql
     postTarget:
         file:
 server:

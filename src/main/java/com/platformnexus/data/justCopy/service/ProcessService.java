@@ -6,6 +6,7 @@ import com.platformnexus.data.justCopy.util.TokenGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -44,12 +45,15 @@ public class ProcessService {
     private String postTargetFile;
 
 
+
+    @Scheduled(fixedDelayString = "${query.scheduled.fixedRate}")
     public void process() {
 
         String token = tokenGenerator.nextString();
 
         try {
             String sourceSql = new String(Files.readAllBytes(Paths.get(sourceFile)));
+            log.info("SQL: {}", sourceFile);
             String targetSql = new String(Files.readAllBytes(Paths.get(targetFile)));
             if (preTargetFile != null && new File(preTargetFile).exists()) {
                 String preTargetSql = new String(Files.readAllBytes(Paths.get(preTargetFile)));
@@ -58,6 +62,9 @@ public class ProcessService {
             }
 
             List<Map<String, Object>> originData = originDataService.generateData(sourceSql);
+            if (originData == null || originData.size() < 1)
+                return;
+
             for (Map<String, Object> item : originData) {
                 String[] insertItems = new String[sourceColumns.length + 1];
                 insertItems[0] = token;

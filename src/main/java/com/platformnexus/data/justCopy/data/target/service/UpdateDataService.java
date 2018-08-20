@@ -21,14 +21,13 @@ public class UpdateDataService {
     private JdbcTemplate jdbcTemplate;
 
     @Async("target_update_executor")
-    public List<Map<String, Object>> updateData(String sql) {
+    public void updateData(String sql) {
         try {
-            return jdbcTemplate.queryForList(sql);
+            jdbcTemplate.update(sql);
         } catch (DataAccessException e) {
             e.printStackTrace();
             log.error("[NOTIFY SUPPORT] - {}", e.getMessage());
         }
-        return null;
     }
 
 

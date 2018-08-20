@@ -14,8 +14,6 @@ services:
       - MYSQL_PASSWORD=source123
       - MYSQL_ROOT_PASSWORD=source123
       - TZ=America/Los_Angeles
-    volumes:
-      - /etc/localtime:/etc/localtime
     ports:
       - "33061:3306"
   mysqldb2:
@@ -27,8 +25,6 @@ services:
     - MYSQL_PASSWORD=process123
     - MYSQL_ROOT_PASSWORD=process123
     - TZ=America/Los_Angeles
-    volumes:
-    - /etc/localtime:/etc/localtime
     ports:
     - "33062:3306"
   mysqldb3:
@@ -40,7 +36,5 @@ services:
     - MYSQL_PASSWORD=target123
     - MYSQL_ROOT_PASSWORD=target123
     - TZ=America/Los_Angeles
-    volumes:
-    - /etc/localtime:/etc/localtime
     ports:
     - "33063:3306"

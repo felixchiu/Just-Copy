@@ -9,7 +9,7 @@ query:
     preTarget:
         file: /Users/chiuf/tmp/pre-target.sql
     postTarget:
-        file:
+        file: /Users/chiuf/tmp/post-target.sql
 server:
     port: 8700
 source:

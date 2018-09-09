@@ -1,29 +1,30 @@
 query:
     scheduled:
         fixedRate: 10800000
+        cron: 0 0 0/3 * * ?
     source:
-        columns: case_id, sample_barcode, workflow_schedule_reason, latest_completed_ext_step, latest_completed_step_time, time_current, duration, threshold, delays
-        file: /Users/chiuf/tmp/source.sql
+        columns: CASE_ID, BLOOD, SAMPLE_CREATEDT, MATRIXBARCODE, MATRIXRACK, EXTRACTION, NGS, MLPA, FRAX, CONFIRMATION, ASURAGEN, MANUAL
+        file: /Users/felixchiu/tmp/source.sql
     target:
-        file: /Users/chiuf/tmp/target.sql
+        file: /Users/felixchiu/tmp/target.sql
     preTarget:
-        file: /Users/chiuf/tmp/pre-target.sql
+        file: /Users/felixchiu/tmp/pre-target.sql
     postTarget:
-        file: /Users/chiuf/tmp/post-target.sql
+        file:
 server:
     port: 8700
 source:
     jdbc:
-        driverClassName: com.mysql.jdbc.Driver
+        driverClassName: oracle.jdbc.driver.OracleDriver
         hibernate:
             dbcp:
                 testWhileIdle: true
-            dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+            dialect: org.hibernate.dialect.Oracle10gDialect
             hbm2ddl:
-                auto: update
-        password: source123
-        url: jdbc:mysql://localhost:33061/source_db?useSSL=false
-        username: source_user
+                auto: validate
+        password: 422g5DQZKXgJGd3E
+        url: jdbc:oracle:thin:@engplbvrds01.cxtggy06pyij.us-west-2.rds.amazonaws.com:1521/ORCL
+        username: ro_ywei
 process:
     jdbc:
         driverClassName: com.mysql.jdbc.Driver
@@ -33,9 +34,9 @@ process:
             dialect: org.hibernate.dialect.MySQL5InnoDBDialect
             hbm2ddl:
                 auto: update
-        password: process123
-        url: jdbc:mysql://localhost:33062/process_db?useSSL=false
-        username: process_user
+        password: Stop912
+        url: jdbc:mysql://lims-db-readonly.natera.local:3306/reporting?useSSL=false
+        username: easerviceaccount
 target:
     jdbc:
         driverClassName: com.mysql.jdbc.Driver
@@ -45,10 +46,22 @@ target:
             dialect: org.hibernate.dialect.MySQL5InnoDBDialect
             hbm2ddl:
                 auto: update
-        password: target123
-        url: jdbc:mysql://localhost:33063/target_db?useSSL=false
-        username: target_user
+        password: Stop912
+        url: jdbc:mysql://lims-db-readonly.natera.local:3306/reporting?useSSL=false
+        username: easerviceaccount
 spring:
     mail:
-        host: localhost
-        port: 1025
+        host: email-smtp.us-west-2.amazonaws.com
+        password: AiEhGxVmyphzWYDBYA3iwztKrxLG+dD1Q4RP/nTQ5x7e
+        port: 47087
+        properties:
+            mail:
+                smtp:
+                    auth: true
+                    socketFactory:
+                        class: javax.net.ssl.SSLSocketFactory
+                        fallback: false
+                        port: 465
+                    ssl:
+                        enable: true
+        username: AKIAJ66F3LRRHH7XWJXQ

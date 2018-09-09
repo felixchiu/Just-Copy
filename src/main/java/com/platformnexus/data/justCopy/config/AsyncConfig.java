@@ -15,7 +15,7 @@ public class AsyncConfig {
     @Value("${async.data.target.update:20}")
     private int TARGET_UPDATE_EXECUTOR_CORE_POOL_SIZE;
 
-    @Value("${async.data.target.update:50}")
+    @Value("${async.data.target.update:100}")
     private int TARGET_UPDATE_EXECUTOR_MAX_POOL_SIZE;
 
 

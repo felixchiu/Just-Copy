@@ -23,7 +23,7 @@ public class UpdateDataService {
     @Async("target_update_executor")
     public void updateData(String sql) {
         try {
-            jdbcTemplate.update(sql);
+            jdbcTemplate.update(sql.replaceAll("\n", " "));
         } catch (DataAccessException e) {
             e.printStackTrace();
             log.error("[NOTIFY SUPPORT] - {}", e.getMessage());

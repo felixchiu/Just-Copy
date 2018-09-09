@@ -46,7 +46,7 @@ public class ProcessService {
 
 
 
-    @Scheduled(fixedDelayString = "${query.scheduled.fixedRate}")
+    @Scheduled(cron = "${query.scheduled.cron}")
     public void process() {
 
         String token = tokenGenerator.nextString();
@@ -82,12 +82,22 @@ public class ProcessService {
                 updateDataService.updateData(postTargetSql);
             }
 
+            mailSenderService.sendSummaryReport("Report generated " + sourceFile, "Reference " + token, toEmail, fromEmail, null, null, false);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
+
+    @Value("${mail.from:support@natera.com}")
+    private String fromEmail;
+
+    @Value("${mail.from:felix.chiu@gmail.com}")
+    private String toEmail;
+
+
+    @Autowired
+    private MailSenderService mailSenderService;
 
     private String getStringValue(Object value) {
         return value != null ? value.toString() : "";

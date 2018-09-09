@@ -21,7 +21,7 @@ public class OriginDataService {
 
     public List<Map<String, Object>> generateData(String sql) {
         try {
-            return jdbcTemplate.queryForList(sql);
+            return jdbcTemplate.queryForList(sql.replaceAll("\n", " "));
         } catch (DataAccessException e) {
             e.printStackTrace();
             log.error("[NOTIFY SUPPORT] - {}", e.getMessage());

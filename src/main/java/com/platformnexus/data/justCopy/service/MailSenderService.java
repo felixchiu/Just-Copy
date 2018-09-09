@@ -20,7 +20,8 @@ public class MailSenderService {
             message.setSubject(subject);
             message.setTo(targetEmail);
             message.setFrom(fromEmail);
-            message.addAttachment(fileName, dataSource);
+            if (fileName !=null && dataSource != null)
+                message.addAttachment(fileName, dataSource);
             message.setText(emailBody, isHTML);
         };
         this.mailSender.send(preparer);

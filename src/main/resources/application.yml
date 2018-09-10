@@ -51,17 +51,5 @@ target:
         username: easerviceaccount
 spring:
     mail:
-        host: email-smtp.us-west-2.amazonaws.com
-        password: AiEhGxVmyphzWYDBYA3iwztKrxLG+dD1Q4RP/nTQ5x7e
-        port: 47087
-        properties:
-            mail:
-                smtp:
-                    auth: true
-                    socketFactory:
-                        class: javax.net.ssl.SSLSocketFactory
-                        fallback: false
-                        port: 465
-                    ssl:
-                        enable: true
-        username: AKIAJ66F3LRRHH7XWJXQ
+        host: 127.0.0.1
+        port: 1025

@@ -96,3 +96,28 @@ create table reporting.lv_ops_horizon3_lv_labalert_new
 );
 
 
+
+drop table if exists reporting.lv_ops_horizon3_lv_process;
+
+create table reporting.lv_ops_horizon3_lv_process (
+  batch_id varchar(255) null,
+  run_date datetime null,
+  OPS_HZN3_CASE_ID	varchar(255) null,
+  OPS_HZN3_CASE_SMPL	varchar(255) null,
+  OPS_HZN3_CASE_SMPL_DESTSMPL	varchar(255) null,
+  LV_CASE_RCV	varchar(255) null,
+  LV_BLOOD	varchar(255) null,
+  LV_SAMPLEID	varchar(255) null,
+  LV_SAMPLE_CREATED	varchar(255) null,
+  LV_PLATE_CREATED	varchar(255) null,
+  LV_PLATE_BARCODE	varchar(255) null,
+  LV_WORKFLOWSTEP	varchar(255) null,
+  LV_DEST_SAMPLE_CREATED	varchar(255) null,
+  LV_DEST_PLATE_CREATED	varchar(255) null,
+  LV_DEST_PLATE_BARCODE	varchar(255) null,
+  LV_DEST_WORKFLOWSTEP	varchar(255) null,
+  LV_PROCESS_FROM_TO	varchar(255) null,
+  LV_RNK	varchar(255) null,
+  LV_DURATION_SAMPLE_CREATED	varchar(255) null,
+  LV_WORKFLOW_NAME	varchar(255) null
+);

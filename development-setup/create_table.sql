@@ -47,7 +47,7 @@ create table reporting.lv_ops_horizon3_labalerts_currentstep
   WORKFLOW_ID           varchar(255)        null,
   SOURCE_SAMPLEID       varchar(50)     null,
   SOURCE_BARCODE        varchar(50)     null,
-  SOURCE_CRERATEDT      datetime        null,
+  SOURCE_CRERATEDT      varchar(255)     null,
   WORKFLOWID            varchar(255)             null,
   OUTPUTSAMPLEID        varchar(50)     null,
   SAMPLEBARCODE         varchar(50)     null,
